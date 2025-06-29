@@ -1,0 +1,46 @@
+﻿using NUnit.Framework;
+using CalcLibrary;
+
+namespace CalculatorTests
+{
+    [TestFixture]
+    public class CalculatorTests
+    {
+        private Calculator _calculator;
+
+        [SetUp]
+        public void Init()
+        {
+            _calculator = new Calculator();
+        }
+
+        [TearDown]
+        public void Cleanup()
+        {
+            _calculator = null;
+        }
+
+        [Test]
+        public void Add_TwoPositiveNumbers_ReturnsCorrectSum()
+        {
+            int result = _calculator.Add(2, 3);
+            Assert.That(result, Is.EqualTo(5));
+        }
+
+        [TestCase(1, 2, 3)]
+        [TestCase(0, 0, 0)]
+        [TestCase(-1, -2, -3)]
+        public void Add_VariousInputs_ReturnsExpected(int a, int b, int expected)
+        {
+            int result = _calculator.Add(a, b);
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Ignore("Test under construction")]
+        [Test]
+        public void Add_ToBeImplementedLater()
+        {
+            Assert.Fail("This test is ignored.");
+        }
+    }
+}
